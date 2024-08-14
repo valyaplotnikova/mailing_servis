@@ -1,0 +1,45 @@
+{% extends 'mailing/base.html' %}
+{% block content %}
+<main>
+
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Клиенты для отправки рассылок</h1>
+
+                    <!--<a href="#" class="btn btn-primary my-2">Main call to action</a>-->
+                    <!--<a href="#" class="btn btn-secondary my-2">Secondary action</a>-->
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+    <div class="row row text-center">
+
+        <div class="col-6">
+            <div class="card mb-4 box-shadow">
+
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Клиент № {{ object.pk }} </h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-title pricing-card-title">Email: {{ object.email }}</p>
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li> Фамилия: {{ object.last_name }}</li>
+                        <li> Имя: {{ object.first_name }}</li>
+                        <li> Отчество: {{ object.father_name }}</li>
+                        <li> Комментарий: {{ object.comment }}</li>
+                    </ul>
+                    <a class="btn btn-primary" href="{% url 'client_update' object.pk %}" role="button">Редактировать</a>
+                    <a class="btn btn-primary" href="{% url 'client_delete' object.pk %}">Удалить</a>
+                    <a class="btn btn-primary" href="{% url 'client_list' %}" role="button">Назад</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+</main>
+
+{% endblock %}
