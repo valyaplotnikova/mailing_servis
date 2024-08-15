@@ -28,11 +28,10 @@
                         <div class="card-body">
                             <p class="card-text">Здесь вы можете создавать свои расслылки с заданными параметрами.</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Просмотреть</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Редактировать</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Удалить</button>
-                                </div>
+
+                                   <a class="btn btn-primary" href="{% url 'mail_list' %}" role="button">Просмотреть</a>
+                                <a class="btn btn-primary" href="{% url 'mail_create' %}" role="button">Создать рассылку</a>
+
 
                             </div>
                         </div>
@@ -49,10 +48,8 @@
                         <div class="card-body">
                             <p class="card-text">База клиентов для рассылок.</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a class="btn btn-primary" href="{% url 'client_list' %}" role="button">Просмотреть</a>
-
-                                </div>
+                                <a class="btn btn-primary" href="{% url 'client_list' %}" role="button">Просмотреть</a>
+                                <a class="btn btn-primary" href="{% url 'client_create' %}" role="button">Создать клиента</a>
 
                             </div>
                         </div>
@@ -69,11 +66,8 @@
                         <div class="card-body">
                             <p class="card-text">База писем для рассылок.</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Просмотреть</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Редактировать</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Удалить</button>
-                                </div>
+                                <a class="btn btn-primary" href="{% url 'message_list' %}" role="button">Просмотреть</a>
+                                <a class="btn btn-primary" href="{% url 'message_create' %}" role="button">Создать письмо</a>
 
                             </div>
                         </div>
