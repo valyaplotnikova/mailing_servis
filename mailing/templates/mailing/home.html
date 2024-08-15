@@ -25,8 +25,8 @@
                             <rect width="100%" height="100%" fill="#55595c"/>
                             <text x="50%" y="50%" fill="#eceeef" dy=".3em">Рассылки</text>
                         </svg>
-                        <div class="card-body">
-                            <p class="card-text">Здесь вы можете создавать свои расслылки с заданными параметрами.</p>
+                        <div class="card-body text-center">
+                            <p class="card-text">Настройки рассылок.</p>
                             <div class="d-flex justify-content-between align-items-center">
 
                                    <a class="btn btn-primary" href="{% url 'mail_list' %}" role="button">Просмотреть</a>
@@ -45,7 +45,7 @@
                             <rect width="100%" height="100%" fill="#55595c"/>
                             <text x="50%" y="50%" fill="#eceeef" dy=".3em">Клиенты</text>
                         </svg>
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <p class="card-text">База клиентов для рассылок.</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a class="btn btn-primary" href="{% url 'client_list' %}" role="button">Просмотреть</a>
@@ -63,12 +63,11 @@
                             <rect width="100%" height="100%" fill="#55595c"/>
                             <text x="50%" y="50%" fill="#eceeef" dy=".3em">Письма</text>
                         </svg>
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <p class="card-text">База писем для рассылок.</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a class="btn btn-primary" href="{% url 'message_list' %}" role="button">Просмотреть</a>
                                 <a class="btn btn-primary" href="{% url 'message_create' %}" role="button">Создать письмо</a>
-
                             </div>
                         </div>
                     </div>
@@ -76,6 +75,12 @@
             </div>
         </div>
     </div>
-
+    <div class="container">
+        <div class="row py-lg-5">
+            <div class="col-lg-4 col-md-8 mx-auto">
+                    <a class="btn btn-primary" href="{% url 'log_list' %}" role="button">Просмотр логов по рассылке</a>
+                </div>
+         </div>
+    </div>
 </main>
 {% endblock %}
