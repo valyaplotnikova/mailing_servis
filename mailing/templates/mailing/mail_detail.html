@@ -1,0 +1,50 @@
+{% extends 'mailing/base.html' %}
+{% block content %}
+<main>
+
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Клиенты для отправки рассылок</h1>
+
+                    <!--<a href="#" class="btn btn-primary my-2">Main call to action</a>-->
+                    <!--<a href="#" class="btn btn-secondary my-2">Secondary action</a>-->
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+    <div class="row row text-center">
+
+        <div class="col-6">
+            <div class="card mb-4 box-shadow">
+
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Рассылка {{ object.name }} </h4>
+                </div>
+                <div class="card-body">
+
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li> Клиенты рассылки: {{ object.clients }}</li>
+                        <li> Сообщение: {{ object.message}}</li>
+                        <li> Дата начала: {{ object.date_start }}</li>
+                        <li> Дата окончания: {{ object.date_end }}</li>
+                        <li> Время начала: {{ object.start_time }}</li>
+                        <li> Период: {{ object.period }}</li>
+                        <li> Статус: {{ object.status }}</li>
+                        <li> Активна: {{ object.is_active}}</li>
+
+                    </ul>
+                    <a class="btn btn-primary" href="{% url 'mail_update' object.pk %}" role="button">Редактировать</a>
+                    <a class="btn btn-primary" href="{% url 'mail_delete' object.pk %}">Удалить</a>
+                    <a class="btn btn-primary" href="{% url 'mail_list' %}" role="button">Назад</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+</main>
+
+{% endblock %}
