@@ -55,7 +55,6 @@ class Mail(models.Model):
                               default='создана')
     is_active = models.BooleanField(default=True, verbose_name='Активация рассылки')
 
-
     def __str__(self):
         return f'{self.name}: Дата начала: {self.date_start}, Дата окончания: {self.date_end}. Статус: {self.status}'
 
