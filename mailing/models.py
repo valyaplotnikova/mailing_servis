@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 
+from users.models import User
+
 NULLABLE = {'blank': True, 'null': True}
 
 
@@ -10,6 +12,7 @@ class Client(models.Model):
     first_name = models.CharField(max_length=150, verbose_name='Имя')
     father_name = models.CharField(max_length=150, verbose_name='Отчество')
     comment = models.TextField(verbose_name='Содержимое', **NULLABLE)
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Владелец')
 
     def __str__(self):
         return f' {self.last_name} {self.first_name} {self.father_name} ({self.email})'
@@ -22,6 +25,7 @@ class Client(models.Model):
 class Message(models.Model):
     title = models.CharField(max_length=150, verbose_name="Заголовок письма")
     body = models.TextField(verbose_name='Тело письма', **NULLABLE)
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Владелец')
 
     def __str__(self):
         return f"{self.title}"
@@ -54,6 +58,7 @@ class Mail(models.Model):
     status = models.CharField(max_length=30, choices=STATUS, verbose_name='Статус рассылки',
                               default='создана')
     is_active = models.BooleanField(default=True, verbose_name='Активация рассылки')
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Владелец')
 
     def __str__(self):
         return f'{self.name}: Дата начала: {self.date_start}, Дата окончания: {self.date_end}. Статус: {self.status}'
