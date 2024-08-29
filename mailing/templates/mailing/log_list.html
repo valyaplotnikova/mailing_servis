@@ -11,7 +11,7 @@
                     <!--<a href="#" class="btn btn-secondary my-2">Secondary action</a>-->
             </div>
         </div>
-        {% if not object %}
+        {% if not object_list %}
         <p>Отчетов о рассылках в данное время нет</p>
         {% endif %}
     </section>
@@ -21,18 +21,18 @@
         <div class="col-3">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal"> {{ object.name }} </h4>
+                    <h4 class="my-0 font-weight-normal"> {{ object.mail.name }} </h4>
                 </div>
                 <div class="card-body">
                       <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li> Дата начала: {{ object.date_start }}</li>
-                        <li> Дата окончания: {{ object.date_end }}</li>
-                        <li> Период: {{ object.period }}</li>
+                          <li> Тема письма: {{ object.mail.message.title }}</li>
+                          <li> Дата начала: {{ object.mail.date_start }}</li>
+                          <li> Дата окончания: {{ object.mail.date_end }}</li>
+                          <li> Дата и время последней попытки: {{ object.last_time_mail }}</li>
+                          <li> Статус рассылки: {{ object.mail.status }}</li>
+                          <li> Статус отправки: {{ object.status }}</li>
                     </ul>
-                    <a class="btn btn-primary" href="{% url 'mail_detail' object.pk %}" role="button">Посмотреть</a>
-                    <a class="btn btn-primary" href="{% url 'mail_update' object.pk %}" role="button">Редактировать</a>
-                    <a class="btn btn-primary" href="{% url 'mail_delete' object.pk %}">Удалить</a>
-                </div>
+       </div>
             </div>
         </div>
         {% endfor %}
