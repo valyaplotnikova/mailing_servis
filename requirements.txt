@@ -8,3 +8,4 @@ django-apscheduler==0.6.2
 pytz==2024.1
 six==1.16.0
 tzlocal==5.2
+pillow==10.4.0
