@@ -7,8 +7,23 @@
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">Сервис рассылок</h1>
 
-                    <!--<a href="#" class="btn btn-primary my-2">Main call to action</a>-->
-                    <!--<a href="#" class="btn btn-secondary my-2">Secondary action</a>-->
+                <!--<a href="#" class="btn btn-primary my-2">Main call to action</a>-->
+                <!--<a href="#" class="btn btn-secondary my-2">Secondary action</a>-->
+            </div>
+            <div class="row">
+                <div class="col-12">
+
+                {% if user.is_authenticated %}
+                <form method="post" action="{% url 'users:logout' %}">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-primary" type="submit">Выйти</button>
+                </form>
+
+                {% else %}
+                <a class="btn btn-outline-primary" href="{% url 'users:login' %}">Войти</a>
+                <a class="btn btn-outline-primary" href="{% url 'users:register' %}">Зарегистрироваться</a>
+                {% endif %}
+                    </div>
             </div>
         </div>
     </section>
@@ -17,6 +32,7 @@
         <div class="container">
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% if user.is_authenticated %}
                 <div class="col">
                     <div class="card shadow-sm">
                         <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
@@ -30,13 +46,12 @@
                             <div class="d-flex justify-content-between align-items-center">
 
                                    <a class="btn btn-primary" href="{% url 'mailing:mail_list' %}" role="button">Просмотреть</a>
-                                <a class="btn btn-primary" href="{% url 'mailing:mail_create' %}" role="button">Создать рассылку</a>
-
 
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endif %}
                 <div class="col">
                     <div class="card shadow-sm">
                         <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
@@ -49,8 +64,6 @@
                             <p class="card-text">База клиентов для рассылок.</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a class="btn btn-primary" href="{% url 'mailing:client_list' %}" role="button">Просмотреть</a>
-                                <a class="btn btn-primary" href="{% url 'mailing:client_create' %}" role="button">Создать клиента</a>
-
                             </div>
                         </div>
                     </div>
@@ -67,8 +80,7 @@
                             <p class="card-text">База писем для рассылок.</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a class="btn btn-primary" href="{% url 'mailing:message_list' %}" role="button">Просмотреть</a>
-                                <a class="btn btn-primary" href="{% url 'mailing:message_create' %}" role="button">Создать письмо</a>
-                            </div>
+                             </div>
                         </div>
                     </div>
                 </div>

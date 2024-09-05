@@ -11,7 +11,7 @@
                         {% csrf_token %}
                         <h1>Хотите удалить письмо "{{ object.title }}"?</h1>
                         <button type="submit" class="btn btn-danger">Подтвердить</button>
-                        <a href="{% url 'message_list' %}" class="btn btn-warning">Отмена</a>
+                        <a href="{% url 'mailing:message_list' %}" class="btn btn-warning">Отмена</a>
                     </form>
                 </div>
             </div>
