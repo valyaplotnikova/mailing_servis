@@ -11,11 +11,16 @@
                     <!--<a href="#" class="btn btn-secondary my-2">Secondary action</a>-->
             </div>
         </div>
+        {% if not object %}
+        <a class="btn btn-primary" href="{% url 'mailing:message_create' %}" role="button">Создать сообщение</a>
+        {% endif %}
     </section>
+
 
     <div class="container">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
         {% for object in object_list %}
+        {% if user.is_authenticated and request.user == object.owner or user.is_superuser %}
         <div class="col-3">
             <div class="card mb-4 box-shadow">
 
@@ -25,13 +30,14 @@
                 <div class="card-body">
                     <p class="card-title pricing-card-title">{{ object.body }}</p>
 
-                    <a class="btn btn-primary" href="{% url 'message_detail' object.pk %}" role="button">Посмотреть</a>
-                    <a class="btn btn-primary" href="{% url 'message_update' object.pk %}" role="button">Редактировать</a>
-                    <a class="btn btn-primary" href="{% url 'message_delete' object.pk %}">Удалить</a>
+                    <a class="btn btn-primary" href="{% url 'mailing:message_detail' object.pk %}" role="button">Посмотреть</a>
+                    <a class="btn btn-primary" href="{% url 'mailing:message_update' object.pk %}" role="button">Редактировать</a>
+                    <a class="btn btn-primary" href="{% url 'mailing:message_delete' object.pk %}">Удалить</a>
                 </div>
 
             </div>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
     </div>

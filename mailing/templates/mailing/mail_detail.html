@@ -34,9 +34,9 @@
                         <li> Активна: {{ object.is_active}}</li>
 
                     </ul>
-                    <a class="btn btn-primary" href="{% url 'mail_update' object.pk %}" role="button">Редактировать</a>
-                    <a class="btn btn-primary" href="{% url 'mail_delete' object.pk %}">Удалить</a>
-                    <a class="btn btn-primary" href="{% url 'mail_list' %}" role="button">Назад</a>
+                    <a class="btn btn-primary" href="{% url 'mailing:mail_update' object.pk %}" role="button">Редактировать</a>
+                    <a class="btn btn-primary" href="{% url 'mailing:mail_delete' object.pk %}">Удалить</a>
+                    <a class="btn btn-primary" href="{% url 'mailing:mail_list' %}" role="button">Назад</a>
                 </div>
 
             </div>

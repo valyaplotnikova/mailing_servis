@@ -15,9 +15,11 @@
         <p>Отчетов о рассылках в данное время нет</p>
         {% endif %}
     </section>
+
     <div class="container">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
         {% for object in object_list %}
+        {% if user.is_authenticated and request.user == object.owner or user.is_superuser %}
         <div class="col-3">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
@@ -35,8 +37,10 @@
        </div>
             </div>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
     </div>
+
 </main>
 {% endblock %}

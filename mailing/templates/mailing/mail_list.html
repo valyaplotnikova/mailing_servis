@@ -12,12 +12,14 @@
             </div>
         </div>
         {% if not object %}
-        <a class="btn btn-primary" href="{% url 'mail_create' %}" role="button">Создать рассылку</a>
+        <a class="btn btn-primary" href="{% url 'mailing:mail_create' %}" role="button">Создать рассылку</a>
         {% endif %}
     </section>
+
     <div class="container">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
         {% for object in object_list %}
+        {% if user.is_authenticated and request.user == object.owner or user.is_superuser %}
         <div class="col-3">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
@@ -29,14 +31,16 @@
                         <li> Дата окончания: {{ object.date_end }}</li>
                         <li> Период: {{ object.period }}</li>
                     </ul>
-                    <a class="btn btn-primary" href="{% url 'mail_detail' object.pk %}" role="button">Посмотреть</a>
-                    <a class="btn btn-primary" href="{% url 'mail_update' object.pk %}" role="button">Редактировать</a>
-                    <a class="btn btn-primary" href="{% url 'mail_delete' object.pk %}">Удалить</a>
+                    <a class="btn btn-primary" href="{% url 'mailing:mail_detail' object.pk %}" role="button">Посмотреть</a>
+                    <a class="btn btn-primary" href="{% url 'mailing:mail_update' object.pk %}" role="button">Редактировать</a>
+                    <a class="btn btn-primary" href="{% url 'mailing:mail_delete' object.pk %}">Удалить</a>
                 </div>
             </div>
         </div>
+          {% endif %}
         {% endfor %}
     </div>
     </div>
+
 </main>
 {% endblock %}
