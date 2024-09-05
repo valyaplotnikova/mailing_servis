@@ -29,9 +29,9 @@
                         <li> {{ object.first_name }}</li>
                         <li> {{ object.father_name }}</li>
                     </ul>
-                    <a class="btn btn-primary" href="{% url 'client_detail' object.pk %}" role="button">Посмотреть</a>
-                    <a class="btn btn-primary" href="{% url 'client_update' object.pk %}" role="button">Редактировать</a>
-                    <a class="btn btn-primary" href="{% url 'client_delete' object.pk %}">Удалить</a>
+                    <a class="btn btn-primary" href="{% url 'mailing:client_detail' object.pk %}" role="button">Посмотреть</a>
+                    <a class="btn btn-primary" href="{% url 'mailing:client_update' object.pk %}" role="button">Редактировать</a>
+                    <a class="btn btn-primary" href="{% url 'mailing:client_delete' object.pk %}">Удалить</a>
                 </div>
 
             </div>
