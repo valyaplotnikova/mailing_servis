@@ -19,7 +19,7 @@ class MessageAdmin(admin.ModelAdmin):
 
 @admin.register(Mail)
 class MailAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'message', 'date_start', 'date_end', 'start_time', 'period', 'status', 'is_active','owner',admin)
+    list_display = ('pk', 'name', 'message', 'date_start', 'date_end', 'start_time', 'period', 'status', 'is_active','owner',)
     search_fields = ('message',)
     list_filter = ('is_active',)
 
