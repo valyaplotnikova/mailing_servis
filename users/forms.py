@@ -13,7 +13,7 @@ class UserProfileForm(UserChangeForm):
 
     class Meta:
         model = User
-        fields = ('email', 'phone', 'avatar',)
+        fields = ('email', 'avatar',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

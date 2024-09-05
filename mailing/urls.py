@@ -1,8 +1,11 @@
 from django.urls import path
 
+from mailing.apps import MailingConfig
 from mailing.views import IndexView, ClientListView, ClientDeleteView, ClientCreateView, ClientUpdateView, \
     ClientDetailView, MessageListView, MessageCreateView, MessageDetailView, MessageUpdateView, MessageDeleteView, \
     MailListView, MailCreateView, MailDetailView, MailUpdateView, MailDeleteView, LogListView
+
+app_name = MailingConfig.name
 
 urlpatterns = [
     path('', IndexView.as_view(), name='home'),
