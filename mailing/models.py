@@ -12,6 +12,7 @@ class Client(models.Model):
     first_name = models.CharField(max_length=150, verbose_name='Имя')
     father_name = models.CharField(max_length=150, verbose_name='Отчество')
     comment = models.TextField(verbose_name='Содержимое', **NULLABLE)
+    is_active = models.BooleanField(default=True, verbose_name='Активация пользователя')
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Владелец')
 
     def __str__(self):
@@ -20,6 +21,10 @@ class Client(models.Model):
     class Meta:
         verbose_name = 'Клиент сервиса'
         verbose_name_plural = 'Клиенты Сервиса'
+
+        permissions = [
+            ("is_active_client", "Блокировка пользователя")
+        ]
 
 
 class Message(models.Model):
@@ -67,7 +72,7 @@ class Mail(models.Model):
         verbose_name = 'Рассылка'
         verbose_name_plural = 'Рассылки'
         permissions = [
-            ("set_is_active", "Активация рассылки")
+            ("is_active_mail", "Активация рассылки")
         ]
 
 

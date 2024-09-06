@@ -11,3 +11,5 @@ tzlocal==5.2
 pillow==10.4.0
 django-crispy-forms==2.3
 crispy_bootstrap4==2024.1
+ python-dotenv==1.0.1
+redis==5.0.8

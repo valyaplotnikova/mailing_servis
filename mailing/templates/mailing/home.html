@@ -1,98 +1,40 @@
 {% extends 'mailing/base.html' %}
+{% load my_tags %}
 {% block content %}
 <main>
-
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">Сервис рассылок</h1>
+                <br>
+                <h3 class="fw-light">Статистика</h3>
+                <p>Всего рассылок на сервисе: {{ mail_count }}</p>
+                <p>Активных рассылок рассылок на сервисе: {{ active_mail_count }}</p>
+                <p>Уникальных клиентов на сервисе: {{ client_count }}</p>
 
                 <!--<a href="#" class="btn btn-primary my-2">Main call to action</a>-->
                 <!--<a href="#" class="btn btn-secondary my-2">Secondary action</a>-->
             </div>
-            <div class="row">
-                <div class="col-12">
 
-                {% if user.is_authenticated %}
-                <form method="post" action="{% url 'users:logout' %}">
-                    {% csrf_token %}
-                    <button class="btn btn-outline-primary" type="submit">Выйти</button>
-                </form>
-
-                {% else %}
-                <a class="btn btn-outline-primary" href="{% url 'users:login' %}">Войти</a>
-                <a class="btn btn-outline-primary" href="{% url 'users:register' %}">Зарегистрироваться</a>
-                {% endif %}
-                    </div>
-            </div>
         </div>
     </section>
-
-    <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                {% if user.is_authenticated %}
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Рассылки</text>
-                        </svg>
-                        <div class="card-body text-center">
-                            <p class="card-text">Настройки рассылок.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-
-                                   <a class="btn btn-primary" href="{% url 'mailing:mail_list' %}" role="button">Просмотреть</a>
-
-                            </div>
-                        </div>
-                    </div>
+    <div class="row col-12 md-3 mb-3 text-center">
+        {% for object in object_list %}
+        <div class="col-4 md-3 mb-3 text-center">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h3 class="my-0 font-weight-normal"> {{ object.title }}</h3>
                 </div>
-                {% endif %}
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Клиенты</text>
-                        </svg>
-                        <div class="card-body text-center">
-                            <p class="card-text">База клиентов для рассылок.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a class="btn btn-primary" href="{% url 'mailing:client_list' %}" role="button">Просмотреть</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Письма</text>
-                        </svg>
-                        <div class="card-body text-center">
-                            <p class="card-text">База писем для рассылок.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a class="btn btn-primary" href="{% url 'mailing:message_list' %}" role="button">Просмотреть</a>
-                             </div>
-                        </div>
-                    </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li><img src="{{ object.preview | media_filter }}" width="300" height="300">></li>
+                    </ul>
+                    <a class="btn btn-primary" href="{% url 'blog:about' object.pk %}" role="button">Подробнее</a>
+
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="row py-lg-5">
-            <div class="col-lg-4 col-md-8 mx-auto">
-                    <a class="btn btn-primary" href="{% url 'mailing:log_list' %}" role="button">Просмотр логов по рассылке</a>
-                </div>
-         </div>
-    </div>
+        {% endfor %}
+
 </main>
 {% endblock %}

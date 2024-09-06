@@ -19,7 +19,7 @@
     <div class="container">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
         {% for object in object_list %}
-        {% if user.is_authenticated and request.user == object.owner or user.is_superuser %}
+        {% if user.is_authenticated and request.user == object.owner or user.is_superuser or perms.mailing.is_active_mail and perms.mailing.view_mail %}
         <div class="col-3">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
@@ -33,7 +33,9 @@
                     </ul>
                     <a class="btn btn-primary" href="{% url 'mailing:mail_detail' object.pk %}" role="button">Посмотреть</a>
                     <a class="btn btn-primary" href="{% url 'mailing:mail_update' object.pk %}" role="button">Редактировать</a>
+                    {% if user.is_authenticated and request.user == object.owner or user.is_superuser or perms.mailing.delete_mail %}
                     <a class="btn btn-primary" href="{% url 'mailing:mail_delete' object.pk %}">Удалить</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
