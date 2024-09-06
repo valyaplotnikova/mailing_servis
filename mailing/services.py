@@ -2,6 +2,7 @@ import datetime
 import smtplib
 
 from django.conf import settings
+from django.core.cache import cache
 from django.core.mail import send_mail
 
 from mailing.models import Log, Mail
@@ -93,3 +94,15 @@ def send_mailing():
         else:
             mailing.status = Mail.DONE
             mailing.save()
+
+
+def get_mailings_for_cache():
+    if settings.CACHE_ENABLED:
+        key = 'mailings_count'
+        mailings_count = cache.get(key)
+        if mailings_count is None:
+            mailings_count = Mail.objects.all().count()
+            cache.set(key, mailings_count)
+    else:
+        mailings_count = Mail.objects.all().count()
+    return mailings_count
